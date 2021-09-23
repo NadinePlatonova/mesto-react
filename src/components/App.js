@@ -7,14 +7,33 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
-  document.body.style.backgroundColor="#000";
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+
+    function handleEditProfileClick() {
+        setIsEditProfilePopupOpen(true);
+    }
+
+    function handleAddPlaceClick() {
+        setIsAddPlacePopupOpen(true);
+    }
+
+    function handleEditAvatarClick() {
+        setIsEditAvatarPopupOpen(true);
+    }
+
   return (
-    <div className="root">
+    <div>
     <Header />
-    <Main />
+    <Main
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+    />
     <Footer />
  
-        <PopupWithForm title="Редактировать профиль" name="edit">
+        <PopupWithForm title="Редактировать профиль" name="edit" isOpen={isEditProfilePopupOpen}>
             <div className="popup__container">
                     <label className="popup__label">
                         <input type="text" name="name" id="owner-name" placeholder="Имя" className="popup__text popup__text_type_name" required minLength="2" maxLength="40" />
@@ -27,7 +46,7 @@ function App() {
             </div>
         </PopupWithForm>
     
-        <PopupWithForm title="Новое место" name="new-card">
+        <PopupWithForm title="Новое место" name="new-card" isOpen={isAddPlacePopupOpen}>
             <div className="popup__container">
                     <label className="popup__label">
                         <input type="text" name="place" id="place" placeholder="Название" className="popup__text popup__text_type_place" required minLength="2" maxLength="30" />
@@ -40,7 +59,7 @@ function App() {
             </div>
         </PopupWithForm>
 
-        <PopupWithForm title="Обновить аватар" name="avatar">
+        <PopupWithForm title="Обновить аватар" name="avatar" isOpen={isEditAvatarPopupOpen}>
             <div className="popup__container">
                     <label className="popup__label">
                         <input type="url" name="link" id="avatar-pic" className="popup__text" placeholder="Ссылка на аватар" required />
