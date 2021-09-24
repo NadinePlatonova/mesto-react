@@ -32,7 +32,7 @@ function Main(props) {
         <main className="content">
             <section className="profile">
                 <div className="profile__info">
-                    <img className="profile__avatar" src={userAvatar} alt="Аватар профиля Жак-Ив Кусто" />
+                    <img className="profile__avatar" src={userAvatar} alt="Аватар профиля" />
                     <div className="profile__button-background">
                         <button type="button" className="profile__edit-avatar" aria-label="Редактировать аватар" onClick={props.onEditAvatar}></button>
                     </div> 

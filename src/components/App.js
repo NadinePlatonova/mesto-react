@@ -46,7 +46,7 @@ function App() {
     />
     <Footer />
  
-    <PopupWithForm title="Редактировать профиль" name="edit" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+    <PopupWithForm title="Редактировать профиль" name="edit" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} submitButtonText="Сохранить">
         <div className="popup__container">
                 <label className="popup__label">
                     <input type="text" name="name" id="owner-name" placeholder="Имя" className="popup__text popup__text_type_name" required minLength="2" maxLength="40" />
@@ -59,7 +59,7 @@ function App() {
         </div>
     </PopupWithForm>
     
-    <PopupWithForm title="Новое место" name="new-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+    <PopupWithForm title="Новое место" name="new-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} submitButtonText="Создать">
         <div className="popup__container">
                 <label className="popup__label">
                     <input type="text" name="place" id="place" placeholder="Название" className="popup__text popup__text_type_place" required minLength="2" maxLength="30" />
@@ -72,7 +72,7 @@ function App() {
         </div>
     </PopupWithForm>
 
-    <PopupWithForm title="Обновить аватар" name="avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+    <PopupWithForm title="Обновить аватар" name="avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} submitButtonText="Сохранить">
         <div className="popup__container">
                 <label className="popup__label">
                     <input type="url" name="link" id="avatar-pic" className="popup__text" placeholder="Ссылка на аватар" required />
@@ -82,12 +82,7 @@ function App() {
     </PopupWithForm>
     
 
-    <PopupWithForm title="Вы уверены?" name="delete-card">
-        <div className="popup__container">
-            <button type="button" className="popup__close" aria-label="Закрыть попап"></button>
-            <h2 className="popup__title popup__title_delete-card">Вы уверены?</h2>
-            <button type="button" className="popup__submit-button popup__submit-button_type_confirm" aria-label="Создать">Да</button>
-        </div>
+    <PopupWithForm title="Вы уверены?" name="delete-card" onClose={closeAllPopups} submitButtonText="Да">
     </PopupWithForm>
 
     <ImagePopup card={selectedCard} onClose={closeAllPopups} />
