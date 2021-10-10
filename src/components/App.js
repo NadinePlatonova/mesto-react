@@ -8,6 +8,7 @@ import ImagePopup from './ImagePopup';
 import { api } from '../utils/api';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 
 function App() {
@@ -63,6 +64,19 @@ function App() {
         })
     }
 
+    function handleUpdateAvatar({avatar}) {
+        api.setUserAvatar(avatar)
+        .then((data) => {
+            setCurrentUser(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            closeAllPopups();
+        })
+    }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
         <div>  
@@ -76,6 +90,7 @@ function App() {
         <Footer />
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
             
         <PopupWithForm title="Новое место" name="new-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} submitButtonText="Создать">
             <div className="popup__container">
@@ -90,14 +105,7 @@ function App() {
             </div>
         </PopupWithForm>
 
-        <PopupWithForm title="Обновить аватар" name="avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} submitButtonText="Сохранить">
-            <div className="popup__container">
-                    <label className="popup__label">
-                        <input type="url" name="link" id="avatar-pic" className="popup__text" placeholder="Ссылка на аватар" required />
-                        <span className="popup__error" id="avatar-pic-error"></span>
-                    </label>
-            </div>
-        </PopupWithForm>
+
         
 
         <PopupWithForm title="Вы уверены?" name="delete-card" onClose={closeAllPopups} submitButtonText="Да">

@@ -37,8 +37,7 @@ function EditProfilePopup(props) {
         isOpen={props.isOpen}
         onClose={props.onClose}
         submitButtonText="Сохранить"
-        onSubmit={handleSubmit}
-        >
+        onSubmit={handleSubmit}>
         <div className="popup__container">
                 <label className="popup__label">
                     <input value={name || ""} onChange={handleEditName} type="text" name="name" id="owner-name" placeholder="Имя" className="popup__text popup__text_type_name" required minLength="2" maxLength="40" />
