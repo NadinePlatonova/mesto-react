@@ -12,14 +12,14 @@ class Api {
         .then(this._checkResponseStatus);
     }
 
-    editUserInfo(data) {
+    setUserInfo(name, about) {
         const url = `${this._baseUrl}/users/me`
         return fetch(url, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: data.name,
-                about: data.role
+                name: name,
+                about: about
             })
         })
         .then(this._checkResponseStatus);

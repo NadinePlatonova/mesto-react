@@ -7,7 +7,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import { api } from '../utils/api';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-
+import EditProfilePopup from './EditProfilePopup';
 
 
 function App() {
@@ -50,6 +50,19 @@ function App() {
         setSelectedCard(card);
     }
 
+    function handleUpdateUser({name, about}) {
+        api.setUserInfo(name, about)
+        .then((data) => {
+            setCurrentUser(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            closeAllPopups();
+        })
+    }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
         <div>  
@@ -61,20 +74,9 @@ function App() {
             onCardClick={handleCardClick}
         />
         <Footer />
-    
-        <PopupWithForm title="Редактировать профиль" name="edit" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} submitButtonText="Сохранить">
-            <div className="popup__container">
-                    <label className="popup__label">
-                        <input type="text" name="name" id="owner-name" placeholder="Имя" className="popup__text popup__text_type_name" required minLength="2" maxLength="40" />
-                        <span className="popup__error" id="owner-name-error"></span>
-                    </label>
-                    <label className="popup__label">
-                        <input type="text" name="role" id="owner-role" placeholder="О себе" className="popup__text popup__text_type_role" required minLength="2" maxLength="200" />
-                        <span className="popup__error" id="owner-role-error"></span>
-                    </label>          
-            </div>
-        </PopupWithForm>
-        
+
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+            
         <PopupWithForm title="Новое место" name="new-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} submitButtonText="Создать">
             <div className="popup__container">
                     <label className="popup__label">
