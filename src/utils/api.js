@@ -25,14 +25,14 @@ class Api {
         .then(this._checkResponseStatus);
     }
 
-    addNewCard(data) {
+    addNewCard(name, link) {
         const url = `${this._baseUrl}/cards`
         return fetch(url, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name: data.place,
-                link: data.link
+                name: name,
+                link: link
             })
         })
         .then(this._checkResponseStatus);
@@ -71,15 +71,6 @@ class Api {
         const url = `${this._baseUrl}/cards/likes/${cardId}`
         return fetch(url, {
             method: isLiked ? 'DELETE' : 'PUT',
-            headers: this._headers
-        })
-        .then(this._checkResponseStatus);
-    }
-
-    deleteLike(cardId) {
-        const url = `${this._baseUrl}/cards/likes/${cardId}`
-        return fetch(url, {
-            method: 'DELETE',
             headers: this._headers
         })
         .then(this._checkResponseStatus);

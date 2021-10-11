@@ -16,7 +16,7 @@ function EditProfilePopup(props) {
         e.preventDefault();
 
         props.onUpdateUser({
-            name: name,
+            name,
             about: description
         });
     }
@@ -52,4 +52,4 @@ function EditProfilePopup(props) {
     )
 }
 
-export default EditProfilePopup
+export default EditProfilePopup;

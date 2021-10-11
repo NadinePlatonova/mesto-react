@@ -9,6 +9,7 @@ import { api } from '../utils/api';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 
 
 function App() {
@@ -45,14 +46,20 @@ function App() {
         api.putLike(card._id, isLiked)
         .then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     function handleCardDelete(card) {
         api.deleteCard(card._id)
         .then(() => {
             setCards((state) => state.filter(c => c._id !== card._id));
-        });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     function handleEditProfileClick() {
@@ -82,12 +89,10 @@ function App() {
         api.setUserInfo(name, about)
         .then((data) => {
             setCurrentUser(data);
+            closeAllPopups();
         })
         .catch((err) => {
             console.log(err);
-        })
-        .finally(() => {
-            closeAllPopups();
         })
     }
 
@@ -95,12 +100,21 @@ function App() {
         api.setUserAvatar(avatar)
         .then((data) => {
             setCurrentUser(data);
+            closeAllPopups();
         })
         .catch((err) => {
             console.log(err);
         })
-        .finally(() => {
+    }
+
+    function handleAddPlaceSubmit({name, link}) {
+        api.addNewCard(name, link)
+        .then((newCard) => {
+            setCards([newCard, ...cards]);
             closeAllPopups();
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }
 
@@ -121,23 +135,8 @@ function App() {
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
             
-        <PopupWithForm title="Новое место" name="new-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} submitButtonText="Создать">
-            <div className="popup__container">
-                    <label className="popup__label">
-                        <input type="text" name="place" id="place" placeholder="Название" className="popup__text popup__text_type_place" required minLength="2" maxLength="30" />
-                        <span className="popup__error" id="place-error"></span>
-                    </label>
-                    <label className="popup__label">
-                        <input type="url" name="link" id="link" placeholder="Ссылка на картинку" className="popup__text popup__text_type_link" required />
-                        <span className="popup__error" id="link-error"></span>
-                    </label>
-            </div>
-        </PopupWithForm>
-
-
-        
-
         <PopupWithForm title="Вы уверены?" name="delete-card" onClose={closeAllPopups} submitButtonText="Да">
         </PopupWithForm>
 

@@ -15,4 +15,4 @@ function PopupWithForm(props) {
     )
 }
 
-export default PopupWithForm
+export default PopupWithForm;

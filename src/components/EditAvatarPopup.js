@@ -38,4 +38,4 @@ function EditProfilePopup(props) {
     )
 }
 
-export default EditProfilePopup
+export default EditProfilePopup;
