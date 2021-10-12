@@ -17,7 +17,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
   const [cards, setCards] = React.useState([])
 
 
@@ -78,11 +79,13 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
+        setIsImagePopupOpen(false);
         setSelectedCard();
     }
 
     function handleCardClick (card) {
         setSelectedCard(card);
+        setIsImagePopupOpen(true);
     }
 
     function handleUpdateUser({name, about}) {
@@ -140,7 +143,7 @@ function App() {
         <PopupWithForm title="Вы уверены?" name="delete-card" onClose={closeAllPopups} submitButtonText="Да">
         </PopupWithForm>
 
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} isOpen={isImagePopupOpen} />
         </div>
     </CurrentUserContext.Provider>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 function ImagePopup(props) {
     return (
-        <section className={`popup popup_dark popup_type_image ${props.card ? 'popup_opened' : ''}`}>
+        <section className={`popup popup_dark popup_type_image ${props.isOpen ? 'popup_opened' : ''}`}>
             <div className="popup__image-container">
                 <button type="button" className="popup__close" aria-label="Закрыть попап" onClick={props.onClose}></button>
                 <img className="popup__image" src={props.card ? props.card.link : '#'} alt={props.card ? props.card.name : '#'} />
@@ -12,4 +12,4 @@ function ImagePopup(props) {
     )
 }
 
-export default ImagePopup
+export default ImagePopup;
