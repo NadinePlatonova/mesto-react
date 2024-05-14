@@ -1,27 +1,27 @@
-# Место (создан на React)
-_Одностраничное приложение с профилем пользователя и карточками с картинками_
+# Mesto (React)
+_A single-page application with a user profile and picture cards_
 
-**Основной стек:** HTML, CSS, JavaScript, React.js.
+**Main Stack:** HTML, CSS, JavaScript, React.js.
 
-**Основной функционал:**
-* редактирование профиля (имя пользователя, его профессия/род деятельности, а также аватар);
-* добавление и удаление карточки (удаление только карточки пользователя, чужие карточки не удаляются);
-* возможность ставить и снимать лайк у понравившихся карточек;
-* подсчет лайков;
-* при нажатии на картинку она открывается на полный экран.
+**Features:**
+* editing a profile (user's name, profession/occupation, and avatar);
+* adding and deleting a card (deleting only the user's card, other people's cards are not deleted);
+* the ability to put and remove likes from your favorite cards;
+* counting likes;
+* when clicking on an image, it opens to full screen.
 
-**Использованы:**
-* взаимодействие со сторонним сервером;
-* функциональные компоненты App, Card, Footer, Header, Main, ImagePopup, PopupWithForm, AddPlacePopup, EditAvatarPopup, EditProfilePopup.
-* управляемые компоненты и рефы;
-* объект контекста и провайдер;
+**Used:**
+* interaction with a third-party server;
+* functional components App, Card, Footer, Header, Main, ImagePopup, PopupWithForm, AddPlacePopup, EditAvatarPopup, EditProfilePopup.
+* managed components and refs;
+* context object and provider;
 * CRA (Create React App).
 
-**Инструкция по разворачиванию приложения:**
-* команда `npm run build` - собрать проект:
-* команда `npm run start` - запустить проект.
+**How to run the app (Node.js should be 14v):**
+* `npm run build` - builds the project:
+* `npm run start` - launches the project.
 
-**Статус проекта:**
-* проект завершен.
+**Status:**
+* Completed.
 
-[Перейти на сайт](https://nadineplatonova.github.io/mesto-react)
+[View Website](https://nadineplatonova.github.io/mesto-react)
